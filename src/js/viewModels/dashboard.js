@@ -7,7 +7,7 @@
 /*
  * Your dashboard ViewModel code goes here
  */
-define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils'],
+define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils', 'ojs/ojchart'],
  function(ko, app, moduleUtils, accUtils) {
 
     function DashboardViewModel() {

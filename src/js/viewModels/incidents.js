@@ -7,11 +7,16 @@
 /*
  * Your incidents ViewModel code goes here
  */
-define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils'],
- function(ko, app, moduleUtils, accUtils) {
+define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils','text!data/data.json', 'ojs/ojchart', 'ojs/ojcore', 'jquery'],
+ function(ko, app, moduleUtils, accUtils, file) {
 
     function IncidentsViewModel() {
       var self = this;
+
+      var data = JSON.parse(file);
+      
+      console.log(data);
+    self.datasource = ko.observableArray(data);
 
       // Header Config
       self.headerConfig = ko.observable({'view':[], 'viewModel':null});
