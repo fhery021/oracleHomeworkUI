@@ -13,6 +13,8 @@ define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils'],
     function DashboardViewModel() {
       var self = this;
 
+       self.name = ko.observable("Tom");
+
       // Header Config
       self.headerConfig = ko.observable({'view':[], 'viewModel':null});
       moduleUtils.createView({'viewPath':'views/header.html'}).then(function(view) {
