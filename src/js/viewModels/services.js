@@ -5,18 +5,15 @@
  * @ignore
  */
 /*
- * Your incidents ViewModel code goes here
+ * Your dashboard ViewModel code goes here
  */
-define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils','text!data/data.json', 'ojs/ojchart', 'ojs/ojcore', 'jquery'],
- function(ko, app, moduleUtils, accUtils, file) {
+define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils', 'ojs/ojchart'],
+ function(ko, app, moduleUtils, accUtils) {
 
-    function IncidentsViewModel() {
+    function ServicesViewModel() {
       var self = this;
 
-      var data = JSON.parse(file);
-      
-      console.log(data);
-    self.datasource = ko.observableArray(data);
+       self.name = ko.observable("Tom");
 
       // Header Config
       self.headerConfig = ko.observable({'view':[], 'viewModel':null});
@@ -36,8 +33,8 @@ define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils','t
        * after being disconnected.
        */
       self.connected = function() {
-        accUtils.announce('Incidents page loaded.', 'assertive');
-        document.title = "Incidents";
+        accUtils.announce('Dashboard page loaded.', 'assertive');
+        document.title = "Dashboard";
         // Implement further logic if needed
       };
 
@@ -62,6 +59,6 @@ define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils','t
      * return a constructor for the ViewModel so that the ViewModel is constructed
      * each time the view is displayed.
      */
-    return IncidentsViewModel;
+    return ServicesViewModel;
   }
 );

@@ -5,12 +5,12 @@
  * @ignore
  */
 /*
- * Your about ViewModel code goes here
+ * Your customer ViewModel code goes here
  */
 define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils'],
  function(ko, app, moduleUtils, accUtils) {
 
-    function AboutViewModel() {
+    function SitesViewModel() {
       var self = this;
 
       // Header Config
@@ -31,8 +31,8 @@ define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils'],
        * after being disconnected.
        */
       self.connected = function() {
-        accUtils.announce('About page loaded.', 'assertive');
-        document.title = "About";
+        accUtils.announce('Customers page loaded.', 'assertive');
+        document.title = "Customers";
         // Implement further logic if needed
       };
 
@@ -57,6 +57,6 @@ define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils'],
      * return a constructor for the ViewModel so that the ViewModel is constructed
      * each time the view is displayed.
      */
-    return AboutViewModel;
+    return SitesViewModel;
   }
 );
