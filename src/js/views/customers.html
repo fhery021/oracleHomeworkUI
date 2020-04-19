@@ -4,7 +4,7 @@
  -->
 <div class="oj-hybrid-applayout-page">
   <div class="oj-applayout-fixed-top">
-      <!--
+    <!--
        ** Oracle JET V8.1.0 hybrid mobile application header pattern.
        ** Please see the Oracle JET Cookbook App Shell: Hybrid Mobile demos for
        ** more information on how to use this pattern.
@@ -16,12 +16,32 @@
   <!-- This is where your main page content will be loaded -->
   <div class="oj-applayout-content">
     <div role="main" class="oj-hybrid-applayout-content">
-      <div class="oj-hybrid-padding">
-        <h1>Customers Content Area</h1>
-        <div>
-            To change the content of this section, you will make edits to the customers.html file located in the /js/views folder.
+      <div class="oj-hybrid-padding ">
+        <div id="sampleDemo">
+          <div class="oj-flex-item oj-flex">
+            <h1>Customers</h1>
+            <div id="componentDemoContent" style="width: 1px; min-width: 100%; align-self: center;">
+              <oj-list-view id="listview" aria-label="simple list" data="[[dataProvider]]">
+
+                <template slot="itemTemplate" data-oj-as="item" class="oj-flex-item">
+                  <div class="container">
+                    <div>
+                      <span class="name">
+                        <oj-bind-text value="[[item.data.name]]"></oj-bind-text>
+                      </span>
+                    </div>
+                    <div>
+                      <span class="oj-text-xs oj-text-secondary-color">
+                        <oj-bind-text value="[[item.data.title]]"></oj-bind-text>
+                      </span>
+                    </div>
+                  </div>
+                </template>
+              </oj-list-view>
+            </div>
+          </div>
         </div>
-      </div>
+      </="oj-flex>
     </div>
   </div>
 </div>
