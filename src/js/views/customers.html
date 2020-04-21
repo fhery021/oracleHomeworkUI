@@ -17,12 +17,13 @@
   <div class="oj-applayout-content">
     <div role="main" class="oj-hybrid-applayout-content">
       <div class="oj-hybrid-padding ">
+        <h1>Customers</h1>
         <div id="sampleDemo">
-          <div class="oj-flex-item oj-flex">
-            <h1>Customers</h1>
-            <div id="componentDemoContent" style="width: 1px; min-width: 100%; align-self: center;">
-              <oj-list-view id="listview" aria-label="simple list" data="[[dataProvider]]">
-
+          <div class="oj-flex oj-flex-init"></div>
+          <div class="oj-flex-item oj-md-4 oj-sm-12">
+            <div id="componentDemoContent" style="width:100%; height:500px; overflow-x:hidden">
+              <oj-list-view id="customers" aria-label="simple list" data="[[customerDataProvider]]">
+                <!-- scroll-policy="loadMoreOnScroll" scroll-policy-options.fetch-size="5"> -->
                 <template slot="itemTemplate" data-oj-as="item" class="oj-flex-item">
                   <div class="container">
                     <div>
@@ -32,7 +33,22 @@
                     </div>
                     <div>
                       <span class="oj-text-xs oj-text-secondary-color">
-                        <oj-bind-text value="[[item.data.title]]"></oj-bind-text>
+                        <oj-bind-text value="[[item.data.cityName]]"></oj-bind-text>
+                      </span>
+                    </div>
+                    <div>
+                      <span class="oj-text-xs oj-text-secondary-color">
+                        <oj-bind-text value="[[item.data.phoneNumber]]"></oj-bind-text>
+                      </span>
+                    </div>
+                    <div>
+                      <span class="oj-text-xs oj-text-secondary-color">
+                        <oj-bind-text value="[[item.data.emailAddress]]"></oj-bind-text>
+                      </span>
+                    </div>
+                    <div>
+                      <span class="oj-text-xs oj-text-secondary-color">
+                        <oj-bind-text value="[[item.data.netIncome]]"></oj-bind-text>
                       </span>
                     </div>
                   </div>
@@ -40,8 +56,17 @@
               </oj-list-view>
             </div>
           </div>
+          <oj-bind-if test="[[customerSelected]]">
+            Customer selected
+
+          </oj-bind-if>
+          <oj-bind-if test="[[!customerSelected]]">
+            <div class="oj-flex-item oj-sm-6">
+              <h4>Select a Customer to see the provided services</h4>
+            </div>
+          </oj-bind-if>
         </div>
-      </="oj-flex>
+      </div>
     </div>
   </div>
 </div>

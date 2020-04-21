@@ -18,3 +18,5 @@ hybrid/plugins/*
 Thumbs.db
 /nbproject/private/
 /nbproject
+
+.idea/

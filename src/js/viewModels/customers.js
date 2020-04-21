@@ -9,14 +9,23 @@
  */
 define([
   "knockout",
+  "ojs/ojmodel",
+  "ojs/ojcollectiondataprovider",
   "appController",
   "ojs/ojmodule-element-utils",
   "accUtils",
   "ojs/ojbootstrap",
-  "ojs/ojarraydataprovider",
   "ojs/ojknockout",
   "ojs/ojlistview",
-], function (ko, app, moduleUtils, accUtils, Bootstrap, ArrayDataProvider) {
+], function (
+  ko,
+  Model,
+  CollectionDataProvider,
+  app,
+  moduleUtils,
+  accUtils,
+  Bootstrap
+) {
   function CustomerViewModel() {
     var self = this;
 
@@ -28,19 +37,43 @@ define([
         self.headerConfig({ view: view, viewModel: new app.getHeaderModel() });
       });
 
-    var data = [
-      { id: 1, name: "Amy Bartlet", title: "Vice President" },
-      { id: 10, name: "Andy Jones", title: "Director" },
-      { id: 11, name: "Andrew Bugsy", title: "Individual Contributer" },
-      { id: 2, name: "Annett Barnes", title: "Individual Contributer" },
-      { id: 12, name: "Bob Jones", title: "Salesman" },
-      { id: 13, name: "Bart Buckler", title: "Purchasing" },
-      { id: 14, name: "Bobby Fisher", title: "Individual Contributer" },
-    ];
-    this.dataProvider = new ArrayDataProvider(data, { keyAttributes: "id" });
+    // Master list and detail list observables
+    self.customerDataProvider = ko.observable(); //gets data for Activities list
+    self.itemsDataProvider = ko.observable(); //gets data for Items list
 
-    // Below are a set of the ViewModel methods invoked by the oj-module component.
-    // Please reference the oj-module jsDoc for additional information.
+    self.itemData = ko.observable(""); //holds data for Item details
+
+    self.pieSeriesValue = ko.observableArray([]); //holds data for pie chart
+
+    // Customer selection observables
+    self.customerSelected = ko.observable(false);
+    self.selectedCustomer = ko.observable();
+    self.firstSelectedCustomer = ko.observable();
+
+    
+
+    // REST endpoint
+    var RESTurl = "http://localhost:8080/api/v1/customer/";
+
+    var CustomerModel = Model.Model.extend({
+      urlRoot: RESTurl,
+      idAttribute: "id",
+    });
+
+    self.myCustomer = new CustomerModel();
+    var CustomerCollection = new Model.Collection.extend({
+      url: RESTurl,
+      model: self.myCustomer,
+      comparator: "id",
+    });
+
+    /*
+     *An observable called customerDataProvider is already bound in the View file
+     *from the JSON example, so you don't need to update dashboard.html
+     */
+    self.myCustomerCol = new CustomerCollection();
+    self.customerDataProvider(new CollectionDataProvider(self.myCustomerCol));
+
 
     /**
      * Optional ViewModel method invoked after the View is inserted into the
@@ -73,7 +106,10 @@ define([
   }
 
   Bootstrap.whenDocumentReady().then(function () {
-    ko.applyBindings(new CustomerViewModel(), document.getElementById("listview"));
+    // ko.applyBindings(
+    //   new CustomerViewModel(),
+    //   document.getElementById("customers")
+    // );
   });
 
   /*
