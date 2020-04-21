@@ -50,8 +50,6 @@ define([
     self.selectedCustomer = ko.observable();
     self.firstSelectedCustomer = ko.observable();
 
-    
-
     // REST endpoint
     var RESTurl = "http://localhost:8080/api/v1/customer/";
 
@@ -67,13 +65,36 @@ define([
       comparator: "id",
     });
 
+    /**
+     * Handling customer selection
+     */
+
+    self.selectedCustomerChanged = function (event) {
+      // Check whether click is a Customer selection or a deselection
+      if (event.detail.value.length != 0) {
+        // If selection, populate and display list
+        // Create variable for items list using firstSelectedXxx API from List View
+        //var itemsArray = self.firstSelectedCustomer().data.items;
+        // Populate items list using DataProvider fetch on key attribute
+        // self.itemsDataProvider(new ArrayDataProvider(itemsArray, { keyAttributes: 'id' }))
+
+        var customerKey = self.firstSelectedCustomer().data.id;
+
+        // ... rest call here
+        console.log(customerKey);
+
+        self.customerSelected(true);
+      } else {
+        self.customerSelected(false);
+      }
+    };
+
     /*
      *An observable called customerDataProvider is already bound in the View file
      *from the JSON example, so you don't need to update dashboard.html
      */
     self.myCustomerCol = new CustomerCollection();
     self.customerDataProvider(new CollectionDataProvider(self.myCustomerCol));
-
 
     /**
      * Optional ViewModel method invoked after the View is inserted into the
