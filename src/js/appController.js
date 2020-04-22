@@ -59,9 +59,8 @@ define([
     // Router setup
     self.router = Router.rootInstance;
     self.router.configure({
-      customers: { label: "Customers", isDefault: true },
-      services: { label: "Services" },
-      sites: { label: "Sites" },
+      customers: { label: "Customer and Services", isDefault: true },
+      sites: { label: "Customers and Sites" },
 
       
     });
@@ -83,21 +82,14 @@ define([
     // Navigation setup
     var navData = [
       {
-        name: "Customers",
+        name: "Customers and Services",
         id: "customers",
         iconClass:
           "oj-navigationlist-item-icon demo-icon-font-24 demo-people-icon-24",
       },
 
       {
-        name: "Services",
-        id: "services",
-        iconClass:
-          "oj-navigationlist-item-icon demo-icon-font-24 demo-fire-icon-24",
-      },
-
-      {
-        name: "Sites",
+        name: "Customers and Sites",
         id: "sites",
         iconClass:
           "oj-navigationlist-item-icon demo-icon-font-24 demo-home-icon-24",

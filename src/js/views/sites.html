@@ -17,10 +17,102 @@
     <div class="oj-applayout-content">
       <div role="main" class="oj-hybrid-applayout-content">
         <div class="oj-hybrid-padding">
-          <h1>SITES</h1>
-          <div>
-              To change the content of this section, you will make edits to the customers.html file located in the /js/views folder.
+         
+        <h4>Select a Customer to see the provided Sites</h4>
+
+        <div id="sampleDemo">
+          <div class="oj-flex oj-flex-init">
+
+            <div class="oj-flex oj-flex-item oj-flex-items-pad oj-md-8 oj-sm-12">
+              <div class="oj-flex-item ">
+                <oj-bind-if test="[[customerSelected]]">
+                  <h1>
+                    <oj-label for="sitesList">Sites:</oj-label>
+                  </h1>
+                  <oj-list-view id="sitesList" style="width:100%;height:500px;overflow-x:hidden"
+                    data="[[sitesDataProvider]]" selection-mode="single" selection="{{selectedSite}}"
+                    on-selection-changed="[[selectedSiteChanged]]" first-selected-item="{{firstSelectedSite}}"
+                    scroll-policy="loadMoreOnScroll" scroll-policy-options.fetch-size="5">
+                    <template slot="itemTemplate" data-oj-as="item">
+                      <div class="container">
+                        <div>
+                          <span class="name">
+                            <h5>
+                              <strong>
+                                City:
+                                <oj-bind-text value="[[item.data.city]]"></oj-bind-text>
+                              </strong>
+                            </h5>
+                          </span>
+                        </div>
+                        <div>
+                          <strong> ID: </strong>
+                          <oj-bind-text value="[[item.data.id]]"></oj-bind-text>
+                        </div>
+                        <div>
+                          <strong>ZIP: </strong>
+                          <oj-bind-text value="[[item.data.zip]]"></oj-bind-text>
+                        </div>
+                        <div>
+                          <strong>Stret: </strong>
+                          <oj-bind-text value="[[item.data.street]]"></oj-bind-text>
+                        </div>
+                        <div>
+                          <strong>House number: </strong>
+                          <oj-bind-text value="[[item.data.houseNumber]]"></oj-bind-text>
+                        </div>
+                      </div>
+                    </template>
+                  </oj-list-view>
+                </oj-bind-if>
+              </div>
+            </div>
+
+            <div class="oj-flex-item oj-md-4 oj-sm-12">
+              <h1>Customers</h1>
+              <div id="componentDemoContent" style="width:100%; height:500px; overflow-x:hidden">
+                <oj-list-view id="customers" aria-label="simple list" data="[[customerDataProvider]]"
+                  selection-mode="single" selection="{{selectedCustomer}}"
+                  on-selection-changed="[[selectedCustomerChanged]]" first-selected-item="{{firstSelectedCustomer}}"
+                  scroll-policy="loadMoreOnScroll" scroll-policy-options.fetch-size="5">
+                  <template slot="itemTemplate" data-oj-as="item" class="oj-flex-item">
+                    <div class="container">
+                      <div>
+                        <span class="name">
+                          <oj-bind-text value="[[item.data.name]]"></oj-bind-text>
+                        </span>
+                      </div>
+                      <div>
+                        <span class="oj-text-xs oj-text-secondary-color">
+                          <oj-bind-text value="[[item.data.cityName]]"></oj-bind-text>
+                        </span>
+                      </div>
+                      <div>
+                        <span class="oj-text-xs oj-text-secondary-color">
+                          <oj-bind-text value="[[item.data.phoneNumber]]"></oj-bind-text>
+                        </span>
+                      </div>
+                      <div>
+                        <span class="oj-text-xs oj-text-secondary-color">
+                          <oj-bind-text value="[[item.data.emailAddress]]"></oj-bind-text>
+                        </span>
+                      </div>
+                      <div>
+                        <span class="oj-text-xs oj-text-secondary-color">
+                          <oj-bind-text value="[[item.data.netIncome]]"></oj-bind-text>
+                        </span>
+                      </div>
+                    </div>
+                  </template>
+                </oj-list-view>
+              </div>
+            </div>
+
           </div>
+        </div>
+
+
+
         </div>
       </div>
     </div>
