@@ -9,25 +9,22 @@
  */
 define([
   "knockout",
+  "ojs/ojmodel",
+  "ojs/ojcollectiondataprovider",
   "appController",
   "ojs/ojmodule-element-utils",
   "accUtils",
-  "ojs/ojmodel",
-  "ojs/ojcollectiondataprovider",
   "ojs/ojbootstrap",
   "ojs/ojknockout",
-  "ojs/ojlistview",
+  "ojs/ojlistview"
 ], function (
-  ko,
-  app,
-  moduleUtils,
-  accUtils,
   ko,
   Model,
   CollectionDataProvider,
   app,
   moduleUtils,
   accUtils,
+  Bootstrap
 ) {
   function SitesViewModel() {
     var self = this;
